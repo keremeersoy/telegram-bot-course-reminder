@@ -1,0 +1,20 @@
+{
+  "name": "telegram-lesson-time-bot",
+  "version": "1.0.0",
+  "description": "special lesson time bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "kerem ersoy",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "node-cron": "^3.0.2",
+    "telegraf": "^4.12.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
