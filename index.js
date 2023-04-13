@@ -13,17 +13,10 @@ bot.on("message", (ctx) => {
     const derslerJSON = getCourseJSON(message);
 
     cron.schedule("* * * * *", () => {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, "0");
-      const day = String(now.getDate()).padStart(2, "0");
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const seconds = String(now.getSeconds()).padStart(2, "0");
-      const formattedDate = `${day}.${month}.${year} ${hours}:${minutes}:${seconds} `;
+      const now = getCurrentDateTime();
 
       derslerJSON.forEach((ders) => {
-        if (ders.tarih === formattedDate) {
+        if (ders.tarih === now) {
           bot.telegram.sendMessage(
             process.env.TELEGRAM_CHAT_ID,
             `${ders.ad} dersi başlıyor!`
@@ -61,6 +54,19 @@ function getCourseJSON(str) {
   }
 
   return courses;
+}
+
+function getCurrentDateTime() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  const formattedDate = `${day}.${month}.${year} ${hours}:${minutes}:${seconds} `;
+
+  return formattedDate;
 }
 
 bot.launch();
